@@ -14,6 +14,7 @@ import {
   ChevronDown,
   ChevronUp,
   Terminal,
+  Check,
 } from "lucide-react";
 import { CostEntry, ProgressEntry } from "@/data/initialData";
 
@@ -39,6 +40,7 @@ export default function AgentControlCenter({
     "Agent is currently sleeping. Click a button below to wake it up and test it."
   );
   const [showDevLog, setShowDevLog] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
   const [rawLogs, setRawLogs] = useState<string[]>([
     "[SYSTEM] Agentic Loop runtime initialized.",
     "[STATUS] Ready to execute daily digest loop.",
@@ -46,6 +48,24 @@ export default function AgentControlCenter({
 
   const addLog = (msg: string) => {
     setRawLogs((prev) => [...prev, `[${new Date().toLocaleTimeString()}] ${msg}`]);
+  };
+
+  const handleResetClick = () => {
+    setIsProcessing(false);
+    setActiveAction(null);
+    setCurrentStep(0);
+    setStatusMessage("Agent state has been successfully reset. Ready to test again.");
+    setRawLogs([
+      "[SYSTEM] Agentic Loop runtime re-initialized.",
+      "[STATUS] All state, logs, and alerts reset to clean baseline.",
+      "[STATUS] Ready to execute daily digest loop.",
+    ]);
+    setIsResetting(true);
+    onReset();
+    setTimeout(() => {
+      setIsResetting(false);
+      setStatusMessage("Agent is currently sleeping. Click a button below to wake it up and test it.");
+    }, 1500);
   };
 
   const runNormalTest = async () => {
@@ -157,9 +177,9 @@ export default function AgentControlCenter({
             </div>
           </div>
 
-          {/* Quick Status Tag */}
+          {/* Quick Status Tag & Reset Button */}
           <div className="flex items-center gap-3">
-            <div className={`px-4 py-2 rounded-xl border text-center ${
+            <div className={`px-4 py-2 rounded-xl border text-center transition-all ${
               hasNeedsHumanAlert
                 ? "border-red-500/50 bg-red-950/60 text-red-300"
                 : "border-emerald-500/50 bg-emerald-950/60 text-emerald-300"
@@ -171,12 +191,13 @@ export default function AgentControlCenter({
             </div>
 
             <button
-              onClick={onReset}
-              title="Reset state to initial"
-              className="p-2.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-all text-xs flex items-center gap-1.5"
+              onClick={handleResetClick}
+              disabled={isProcessing}
+              title="Reset state back to initial clean baseline"
+              className="px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-800/90 hover:bg-slate-700 active:scale-95 text-slate-200 hover:text-white transition-all text-xs font-semibold flex items-center gap-2 shadow-sm"
             >
-              <RotateCcw className="h-4 w-4" />
-              <span className="hidden sm:inline">Reset</span>
+              <RotateCcw className={`h-4 w-4 ${isResetting ? "animate-spin text-cyan-400" : "text-cyan-400"}`} />
+              <span>{isResetting ? "Resetting..." : "Reset System"}</span>
             </button>
           </div>
         </div>
@@ -262,22 +283,35 @@ export default function AgentControlCenter({
         </div>
 
         {/* Friendly Status Box */}
-        <div className="mt-4 p-4 rounded-xl bg-slate-950 border border-slate-800/80 flex items-center gap-3">
-          <div className="p-2.5 rounded-lg bg-cyan-500/10 text-cyan-400 shrink-0">
-            <Bot className="h-5 w-5" />
-          </div>
-          <div className="flex-1">
-            <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Current Activity</div>
-            <div className={`text-sm font-medium mt-0.5 ${
-              statusMessage.includes("Success")
-                ? "text-emerald-400"
-                : statusMessage.includes("Alert") || statusMessage.includes("Missing")
-                ? "text-red-400 font-semibold"
-                : "text-slate-100"
-            }`}>
-              {statusMessage}
+        <div className="mt-4 p-4 rounded-xl bg-slate-950 border border-slate-800/80 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-lg bg-cyan-500/10 text-cyan-400 shrink-0">
+              <Bot className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Current Activity</div>
+              <div className={`text-sm font-medium mt-0.5 ${
+                statusMessage.includes("Success") || statusMessage.includes("reset")
+                  ? "text-emerald-400"
+                  : statusMessage.includes("Alert") || statusMessage.includes("Missing")
+                  ? "text-red-400 font-semibold"
+                  : "text-slate-100"
+              }`}>
+                {statusMessage}
+              </div>
             </div>
           </div>
+
+          {/* Quick reset action if an alert is triggered */}
+          {hasNeedsHumanAlert && (
+            <button
+              onClick={handleResetClick}
+              className="px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-200 border border-red-500/40 text-xs font-medium flex items-center gap-1.5 shrink-0 transition-colors"
+            >
+              <RotateCcw className="h-3.5 w-3.5" />
+              <span>Dismiss & Reset</span>
+            </button>
+          )}
         </div>
 
         {/* Developer Console (Collapsible) */}
@@ -292,7 +326,7 @@ export default function AgentControlCenter({
                 className={
                   log.includes("ERROR") || log.includes("NEEDS HUMAN")
                     ? "text-red-400"
-                    : log.includes("exit code 0") || log.includes("success")
+                    : log.includes("exit code 0") || log.includes("success") || log.includes("reset")
                     ? "text-emerald-400"
                     : "text-slate-400"
                 }

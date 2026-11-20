@@ -32,6 +32,8 @@ export default function DashboardPage() {
   const [progressLogs, setProgressLogs] = useState<ProgressEntry[]>(INITIAL_PROGRESS_LOGS);
   const [todos, setTodos] = useState<string[]>(INITIAL_TODOS);
   const [activeTab, setActiveTab] = useState<"agent" | "cost" | "safety" | "tasks" | "code">("agent");
+  const [resetKey, setResetKey] = useState(0);
+  const [isGlobalResetting, setIsGlobalResetting] = useState(false);
 
   // Determine if there is an active NEEDS HUMAN alert
   const hasNeedsHumanAlert = progressLogs.some(
@@ -47,9 +49,14 @@ export default function DashboardPage() {
   };
 
   const handleReset = () => {
+    setIsGlobalResetting(true);
     setCostLogs(INITIAL_COST_LOGS);
     setProgressLogs(INITIAL_PROGRESS_LOGS);
     setTodos(INITIAL_TODOS);
+    setResetKey((prev) => prev + 1);
+    setTimeout(() => {
+      setIsGlobalResetting(false);
+    }, 1000);
   };
 
   const handleAddTodo = (item: string) => {
@@ -89,6 +96,17 @@ export default function DashboardPage() {
               <span className={`h-2 w-2 rounded-full ${hasNeedsHumanAlert ? "bg-red-400 animate-pulse" : "bg-emerald-400"}`}></span>
               {hasNeedsHumanAlert ? "Alert Active" : "Loop Ready"}
             </span>
+
+            {/* Global Reset Button in Navbar */}
+            <button
+              onClick={handleReset}
+              disabled={isGlobalResetting}
+              title="Reset all logs, task list, and AI agent state back to clean initial baseline"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-slate-700 bg-slate-800/90 hover:bg-slate-700 active:scale-95 text-xs font-semibold text-slate-200 hover:text-white transition-all shadow-sm"
+            >
+              <RotateCcw className={`h-3.5 w-3.5 ${isGlobalResetting ? "animate-spin text-cyan-400" : "text-cyan-400"}`} />
+              <span>{isGlobalResetting ? "Resetting..." : "Reset All"}</span>
+            </button>
 
             <a
               href="https://github.com/SainBux-HadiSeelro/break-it-on-purpose-loop"
@@ -174,6 +192,7 @@ export default function DashboardPage() {
         <div className="pt-2">
           {activeTab === "agent" && (
             <AgentControlCenter
+              key={resetKey}
               todos={todos}
               hasNeedsHumanAlert={hasNeedsHumanAlert}
               onAddCostLog={handleAddCostLog}
