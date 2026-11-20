@@ -83,3 +83,20 @@ Written using ONLY `progress.md` and `digest.log` (without re-running the broken
 # Run the broken version (will fail with visible trace)
 ./daily_digest_broken.sh
 ```
+
+## Interactive Web Dashboard (Next.js + Tailwind)
+
+A modern web dashboard to visualize token cost observability (Concept 13) and test unattended failure diagnosis (Concept 14).
+
+### Run Locally:
+```bash
+npm install
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000).
+
+### Deploy to Vercel:
+This repository is configured for 1-click Vercel deployment:
+1. Import the repository in [Vercel](https://vercel.com).
+2. Framework preset will automatically be detected as **Next.js**.
+3. Click **Deploy**.
