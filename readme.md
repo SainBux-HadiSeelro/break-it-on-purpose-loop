@@ -6,7 +6,7 @@
 [![Next.js 14](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vercel Ready](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-break--it--on--purpose--loop.vercel.app-00dfa2?style=for-the-badge&logo=vercel&logoColor=black)](https://break-it-on-purpose-loop.vercel.app/)
 [![Loop Engineering](https://img.shields.io/badge/Loop_Engineering-Concepts_13_%26_14-8b5cf6?style=for-the-badge&logo=openai&logoColor=white)]()
 
 <p align="center">
@@ -14,7 +14,7 @@
   Demonstrates <b>Concept 13 (Token Cost Observability)</b> and <b>Concept 14 (Needs-A-Human Failure Spine)</b> with an interactive, non-tech friendly Next.js Web Dashboard.
 </p>
 
-[🌐 Live Web Dashboard](#-interactive-web-dashboard) • [📋 System Specifications](SPEC.md) • [🚀 Quickstart](#-quickstart) • [🛡️ Sabotage Testing](#-part-2-sabotage--failure-diagnosis-concept-14)
+[🚀 **Launch Live Demo**](https://break-it-on-purpose-loop.vercel.app/) • [📋 System Specifications](SPEC.md) • [🚀 Quickstart](#-quickstart) • [🛡️ Sabotage Testing](#-part-2-sabotage--failure-diagnosis-concept-14)
 
 ---
 
@@ -113,6 +113,10 @@ When an engineer checks the system at 9:00 AM using **ONLY** `progress.md` and `
 
 A modern, production-grade **Next.js 14 + Tailwind CSS** dashboard tailored so that both **technical developers** and **non-technical stakeholders** can interact with and understand the system.
 
+> ### 🌐 Live Interactive Demo
+> **Direct URL:** [https://break-it-on-purpose-loop.vercel.app/](https://break-it-on-purpose-loop.vercel.app/)  
+> *No installation required — test healthy agent execution, sabotage safety alerts, and token cost simulations directly in your browser.*
+
 ### Dashboard Highlights:
 - **🤖 1-Click Agent Playground**: Run normal beats (`daily_digest.sh`) or trigger deliberate sabotage (`daily_digest_broken.sh`) with live animated activity progress.
 - **💰 Plain-English Cost Guard**: Interactive cadence slider (1 to 24 runs/day) with instant monthly billing estimates across GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Flash.
@@ -150,7 +154,11 @@ break-it-on-purpose-loop/
 
 ## 🚀 Quickstart
 
-### 1. Run the Web Dashboard Locally
+### 1. View Live Hosted Demo
+Open the live Vercel production deployment:  
+👉 **[https://break-it-on-purpose-loop.vercel.app/](https://break-it-on-purpose-loop.vercel.app/)**
+
+### 2. Run the Web Dashboard Locally
 ```bash
 # Clone the repository
 git clone https://github.com/SainBux-HadiSeelro/break-it-on-purpose-loop.git
