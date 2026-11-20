@@ -147,5 +147,28 @@ Sabotage method: Point it at a file or directory that does not exist ($TODO_FILE
 When the loop fails:
 1. Writes a "NEEDS HUMAN" signal to progress.md under today's date.
 2. Writes the failure reason to digest.log.
-3. Exits with non-zero exit code (exit 1).`
+3. Exits with non-zero exit code (exit 1).`,
+
+  systemSpec: `# System Specification: Daily Digest Autonomous Loop
+
+1. Concept 13 Invariants (Cost Observability):
+   - Every beat estimates tokens using (chars / 4).
+   - cost_log.md is append-only (never truncated or overwritten).
+   - Monthly token cost = average tokens/beat * 30 beats/month.
+
+2. Concept 14 Invariants (Failure Spine):
+   - Unattended loops MUST NEVER fail silently.
+   - On error: writes 'NEEDS HUMAN: <reason>, at <timestamp>' to progress.md.
+   - Secondary failure reason logged to digest.log.
+   - Exits with status code 1.
+
+3. Cold Morning Diagnosis:
+   - What failed? Pinpointed immediately from spine.
+   - When did it fail? Exact timestamp logged.
+   - Any guessing? Zero guessing required.
+
+4. File Contracts:
+   - Input: todos.txt
+   - Outputs: cost_log.md, progress.md, digest.log
+   - Sabotage Test: daily_digest_broken.sh`
 };
