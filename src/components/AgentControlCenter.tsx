@@ -39,7 +39,7 @@ export default function AgentControlCenter({
   const [statusMessage, setStatusMessage] = useState<string>(
     "Agent is currently sleeping. Click a button below to wake it up and test it."
   );
-  const [showDevLog, setShowDevLog] = useState(false);
+  const [showDevLog, setShowDevLog] = useState(true);
   const [isResetting, setIsResetting] = useState(false);
   const [rawLogs, setRawLogs] = useState<string[]>([
     "[SYSTEM] Agentic Loop runtime initialized.",
