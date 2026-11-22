@@ -6,8 +6,8 @@
 [![Next.js 14](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel_Production-00dfa2?style=for-the-badge&logo=vercel&logoColor=black)](https://break-it-on-purpose-loop.vercel.app/)
-[![Loop Engineering](https://img.shields.io/badge/Loop_Engineering-Concepts_13_%26_14-8b5cf6?style=for-the-badge&logo=openai&logoColor=white)](https://break-it-on-purpose-loop.vercel.app/)
+<a href="https://break-it-on-purpose-loop.vercel.app/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Live_Demo-Vercel_Production-00dfa2?style=for-the-badge&logo=vercel&logoColor=black" alt="Live Demo" /></a>
+<a href="https://break-it-on-purpose-loop.vercel.app/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Loop_Engineering-Concepts_13_%26_14-8b5cf6?style=for-the-badge&logo=openai&logoColor=white" alt="Loop Engineering" /></a>
 [![License](https://img.shields.io/badge/License-MIT-amber?style=for-the-badge)](LICENSE)
 
 <br />
@@ -20,7 +20,7 @@
 
 <br />
 
-[🚀 **Launch Live App**](https://break-it-on-purpose-loop.vercel.app/) • [📋 System Specification](SPEC.md) • [💥 Sabotage Testing](FAILURE_TEST.md) • [☕ Cold Morning Diagnosis](DIAGNOSIS.md) • [⚡ Quickstart](#-quickstart)
+<a href="https://break-it-on-purpose-loop.vercel.app/" target="_blank" rel="noopener noreferrer">🚀 <b>Launch Live App</b></a> • [📋 System Specification](SPEC.md) • [💥 Sabotage Testing](FAILURE_TEST.md) • [☕ Cold Morning Diagnosis](DIAGNOSIS.md) • [⚡ Quickstart](#-quickstart)
 
 ---
 
@@ -150,7 +150,7 @@ Built with **Next.js 14 (App Router)**, **TypeScript**, and **Tailwind CSS**, de
 
 > [!TIP]
 > **Live Interactive Cloud Demo**:  
-> 👉 [https://break-it-on-purpose-loop.vercel.app/](https://break-it-on-purpose-loop.vercel.app/)  
+> 👉 <a href="https://break-it-on-purpose-loop.vercel.app/" target="_blank" rel="noopener noreferrer"><b>https://break-it-on-purpose-loop.vercel.app/</b></a>  
 > *Zero installation needed — test normal runs, trigger sabotage alerts, and inspect token pricing directly in your browser.*
 
 ### Dashboard Modules:
@@ -204,7 +204,7 @@ break-it-on-purpose-loop/
 
 ### Option A: Open Hosted Web App
 Access the deployed production app instantly:  
-👉 **[break-it-on-purpose-loop.vercel.app](https://break-it-on-purpose-loop.vercel.app/)**
+👉 <a href="https://break-it-on-purpose-loop.vercel.app/" target="_blank" rel="noopener noreferrer"><b>break-it-on-purpose-loop.vercel.app</b></a>
 
 ### Option B: Run Web Dashboard Locally
 ```bash
